@@ -7,7 +7,7 @@ tools {
 
  environment {
     DOCKER_REGISTRY = "docker.io"
-    DOCKERHUB_CREDENTIALS = credentials('DOCKER_HUB_CREDENTIALS')
+    DOCKERHUB_CREDENTIALS = credentials('DOCKERHUB_CREDENTIALS')
     VERSION = "${env.BUILD_ID}"
   }
 
