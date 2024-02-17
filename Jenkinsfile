@@ -1,15 +1,16 @@
 pipeline {
   agent any
+  environment {
+      PATH = "/var/lib/jenkins/.nvm/versions/node/v19.9.0/bin:${env.PATH}"
+      DOCKER_REGISTRY = "docker.io"
+      DOCKERHUB_CREDENTIALS = credentials('DOCKERHUB_CREDENTIALS')
+      VERSION = "${env.BUILD_ID}"
+  }
+
 
 tools {
     nodejs "Nodejs"
-}
-
- environment {
-    DOCKER_REGISTRY = "docker.io"
-    DOCKERHUB_CREDENTIALS = credentials('DOCKERHUB_CREDENTIALS')
-    VERSION = "${env.BUILD_ID}"
-  }
+}ł
 
   stages {
 
@@ -46,7 +47,7 @@ tools {
 
      stage('Update Image Tag in GitOps') {
       steps {
-         checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'git-ssh', url: 'git@github.com/cristianchira/deployment-folder.git']])
+         checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'git-ssh', url: 'git@github.com/cristianchira/deployment-folder.git']]])
         script {
           // Set the new image tag with the Jenkins build number
        sh '''
