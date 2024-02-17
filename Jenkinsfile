@@ -29,10 +29,11 @@ tools {
 
     stage('Docker Build and Push') {
       steps {
-          withCredentials([usernamePassword(credentialsId: 'DOCKERHUB_CREDENTIALS', passwordVariable: 'DOCKERHUB_PSW', usernameVariable: 'DOCKERHUB_USR')]) {
+          withCredentials([usernamePassword(credentialsId: 'DOCKERHUB_CREDENTIALS', passwordVariable: 'DOCKERHUB_CREDENTIALS_PSW', usernameVariable: 'DOCKERHUB_CREDENTIALS_USR')]) {
           sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
           sh 'docker build -t cristianchira/food-delivery-app-fe:${VERSION} .'
           sh 'docker push cristianchira/food-delivery-app-fe:${VERSION}'
+          }
       }
     }
 
