@@ -65,6 +65,9 @@ tools {
         '''
 
           sh 'git checkout master'
+          // Set Git user email and name for this repository
+          sh 'git config user.email "cristianchira@gmail.com"'
+          sh 'git config user.name "Cristian CHIRA"'
           sh 'git add .'
           sh 'git commit -m "Update image tag"'
         sshagent(['git-ssh'])
