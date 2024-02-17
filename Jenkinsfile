@@ -8,7 +8,7 @@ tools {
  environment {
     DOCKER_REGISTRY = "docker.io"
     DOCKERHUB_CREDENTIALS = credentials('DOCKER_HUB_CREDENTIALS')
-    VERSION = "${env.BUILD_ID}"ii ..
+    VERSION = "${env.BUILD_ID}"
   }
 
   stages {
