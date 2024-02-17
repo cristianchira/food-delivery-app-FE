@@ -47,7 +47,17 @@ tools {
 
      stage('Update Image Tag in GitOps') {
       steps {
-         checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'git-ssh', url: 'git@github.com/cristianchira/deployment-folder.git']]])
+        // checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'git-ssh', url: 'git@github.com/cristianchira/deployment-folder.git']]])
+      checkout([
+          $class: 'GitSCM', 
+          branches: [[name: '*/master']],
+          extensions: [],
+          userRemoteConfigs: [[
+              credentialsId: 'git-ssh', 
+              url: 'git@github.com:cristianchira/deployment-folder.git'
+         ]]
+      ])
+
         script {
           // Set the new image tag with the Jenkins build number
        sh '''
